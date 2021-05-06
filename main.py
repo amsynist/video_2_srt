@@ -23,7 +23,7 @@ time.sleep(0.5)
 # Slicing Extracted Audio into Equal Chunks/Parts
 
 myaudio = AudioSegment.from_file(r"Extracted_Audio\Extracted_Audio_Files.wav" , "wav") 
-chunk_length_ms = 100000 # pydub calculates in millisec
+chunk_length_ms = 50000 # pydub calculates in millisec
 chunks = make_chunks(myaudio, chunk_length_ms) #Make chunks of one sec
 
 try:
@@ -36,7 +36,7 @@ os.chdir('Splitted_Audio_Files')
 
 #Export all of the individual chunks as .mp3 files
 for i, chunk in enumerate(chunks):
-    chunk_name = "Split_Audio_Part-{0}.wav".format(i)
+    chunk_name = "Split_Audio_Part_{0}.wav".format(i+10)
     print (f"Splitted And Exporting... [{chunk_name}]")
     time.sleep(0.2)
     chunk.export(chunk_name, format="wav")
@@ -51,4 +51,4 @@ for file in mydir.glob('*.wav'):
     time.sleep(3)
     print (f"Recognized speech of file - {convert}")
 
-print("Recognized speech is converted and stored in -Recognized.txt- File")
+print("Recognized speech is converted and stored in 'Splitted_Audio_Files/Transcribed.txt' File")
